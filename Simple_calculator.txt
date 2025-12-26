@@ -34,16 +34,19 @@ def add(n1, n2):
     text = f"{n1} {operation} {n2} = {result}"
     return text
 
-
 first_number = float(input("What's the first number?:"))
-operation = (input(" + \n - \n * \n / \nPick an operation:"))
-second_number = float(input("What's the next number?:"))
-print(add(first_number,second_number))
-continue_calculating = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation")
+should_accumulate = True
 
-while continue_calculating == "y":
+while should_accumulate:
     operation = (input(" + \n - \n * \n / \nPick an operation:"))
     second_number = float(input("What's the next number?:"))
-    print(add(result, second_number))
-    continue_calculating = input(
-        f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation")
+    print(add(first_number,second_number))
+    continue_calculating = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation")
+    if continue_calculating == "y":
+        first_number = result
+    else:
+        should_accumulate = False
+        print("\n" * 20)
+        first_number = float(input("What's the first number?:"))
+        should_accumulate = True
+
